@@ -8,17 +8,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'app_main')]
+    #[Route('/', name: 'index')]
     public function index()
     {
         // return this->render('index.html.twig');
         dd("This is the main page where all products displayed");
     }
 
-    #[Route('/', name: 'app_main')]
-    public function readAll(): JsonResponse
+    #[Route('/', name: 'read_all')]
+    public function readAll()
     {
-        // return this->render('index.html.twig');
-        dd("This is the main page where all products displayed");
+        $tasks = $this->getDoctrine()->getRepository(Task::class)->findBy([],['id'=>'DESC']);
+        $paginatedTasks = $paginator->paginate($tasks, $request->query->getInt('page', 1), 5);
+        return $this->render('all.html.twig', ['tasks' => $paginatedTasks]);
     }
 }
