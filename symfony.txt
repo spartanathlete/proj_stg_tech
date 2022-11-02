@@ -1,0 +1,6 @@
+Create a symfony project - composer create-project symfony/skeleton [project_name]
+Install CRUD required packs - composer require maker                                                                    
+
+SQL/MySQL - CREATE USER 'superuser'@'127.0.0.1' IDENTIFIED BY '';
+          - GRANT ALL PRIVILEGES ON *.* TO 'superuser'@'127.0.0.1';
+          - FLUSH PRIVILEGES;
