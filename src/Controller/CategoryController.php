@@ -11,7 +11,7 @@ use App\Entity\Category;
 class CategoryController extends AbstractController
 {
     //#[Route('/', name: 'category_index')]
-    public function index(): JsonResponse
+    public function index()
     {
         dd("This is the main page where all products displayed");
     }
@@ -25,12 +25,12 @@ class CategoryController extends AbstractController
         $category->setName("Wearables");
         $category->setDescription("Every thing you can wear (T-Shirts, Pants...)");
         
-        // $created = date('d-m-y h:i:s');
-        // $cre_str=strval($created);
-        // $category->setCreated($cre_str);
+        $created = date('d-m-y h:i:s');
+        $category->setCreated($created);
         
         $objectManager->persist($category);
         $objectManager->flush();
+        dd($category);
     }
 
     //#[Route('/read', name: 'category_add')]

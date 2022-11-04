@@ -20,9 +20,8 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    // #[ORM\GeneratedValue]
-    private ?\DateTimeInterface $created = null;
+    #[ORM\Column(length: 255)]
+    private ?string $created = null;
 
     public function getId(): ?int
     {
@@ -53,12 +52,12 @@ class Category
         return $this;
     }
 
-    public function getCreated(): ?\DateTimeInterface
+    public function getCreated(): ?string
     {
         return $this->created;
     }
 
-    public function setCreated(\DateTimeInterface $created): self
+    public function setCreated(string $created): self
     {
         $this->created = $created;
 
