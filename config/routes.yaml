@@ -5,3 +5,7 @@ category_index:
 category_add:
   path: /category/add
   controller: App\Controller\CategoryController::add
+
+category_update:
+  path: /category/edit/{id}
+  controller: App\Controller\CategoryController::update

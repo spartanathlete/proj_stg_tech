@@ -38,7 +38,7 @@ class CategoryRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */
@@ -54,13 +54,8 @@ class CategoryRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Category
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function findAll(): array
+   {
+       return $this->createQueryBuilder('category')->orderBy('category.id', 'DESC')->getQuery()->getResult();
+   }
 }

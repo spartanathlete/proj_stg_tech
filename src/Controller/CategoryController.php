@@ -4,16 +4,20 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Cemponent\HttpFoundation\JsonResponse;
+use Knp\Component\Pager\PaginatorInterface;
 //use Symfony\Cemponent\Routing\Annotation\Route;
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 //#[Route('/category', name: 'app_main')]
 class CategoryController extends AbstractController
 {
     //#[Route('/', name: 'category_index')]
-    public function index()
+    public function index(CategoryRepository $catRepo)
     {
-        dd("This is the main page where all products displayed");
+        $categories = $catRepo->findAll();
+        dd($categories);
     }
 
     //#[Route('/add', name: 'category_add')]
@@ -33,13 +37,19 @@ class CategoryController extends AbstractController
         dd($category);
     }
 
-    //#[Route('/read', name: 'category_add')]
-    public function readAll(ProdRepo $prodRepo)
-    {
-        $products = $prodRepo->findAll();
-        dd($products);
-        // return $this->render('index.html.twig', [
-        //     "days" => $days
-        // ]);
+    public function update($id) {
+
+        $objectManager = $this->getDoctrine()->getManager();
+
+        $task = $objectManager->getRepository(Task::class)->find($id);
+
+        $task->setStatus(!$task->getStatus());
+
+        $objectManager->flush();
+
+        $this->addFlash('info', 'You have updated a task!');
+
+        return $this->redirectToRoute('all');
+
     }
 }
