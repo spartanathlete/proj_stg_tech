@@ -21,6 +21,7 @@ class Category
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    // #[ORM\GeneratedValue]
     private ?\DateTimeInterface $created = null;
 
     public function getId(): ?int

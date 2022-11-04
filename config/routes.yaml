@@ -1,3 +1,7 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+category_index:
+  path: /category
+  controller: App\Controller\CategoryController::index
+
+category_add:
+  path: /category/add
+  controller: App\Controller\CategoryController::add
